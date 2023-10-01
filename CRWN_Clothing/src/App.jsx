@@ -5,12 +5,15 @@ import './App.css';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
+import Header from './components/Header/header-component';
 
 function App() {
   return (
     
     <BrowserRouter>
+    
       <Routes>
+        <Header />
         <Route path='/' element={<HomePage/>} />
         <Route path='/shop' element={<ShopPage />} />
       </Routes>`

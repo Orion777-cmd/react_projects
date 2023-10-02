@@ -11,9 +11,9 @@ function App() {
   return (
     
     <BrowserRouter>
-    
+      <Header />
       <Routes>
-        <Header />
+        
         <Route path='/' element={<HomePage/>} />
         <Route path='/shop' element={<ShopPage />} />
       </Routes>`

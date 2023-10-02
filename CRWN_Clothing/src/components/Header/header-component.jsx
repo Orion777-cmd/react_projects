@@ -2,12 +2,13 @@ import React from "react"
 import {Link } from "react-router-dom"
 
 import "./header.styles.scss"
-import { ReactComponent as Logo} from '../../assets/crown.svg'
+import logo from '../../assets/crown.svg'
 
 const Header = () => {
+   return (
     <div className="header">
         <Link to="/" className="logo-container">
-            <Logo className="logo" />
+            <img src={`${logo}`} alt="crown logo image" className="logo" />
         </Link>
 
         <div className="options">
@@ -16,6 +17,7 @@ const Header = () => {
 
         </div>
     </div>
+   )
 }
 
 export default Header;

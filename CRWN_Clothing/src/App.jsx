@@ -9,15 +9,16 @@ import SignInSignUpPage from './pages/sign-in-sign-up-page/sign-in-sign-up.compo
 
 
 import Header from './components/Header/header-component';
-import {auth} from './firebase/firebase.utils'
+import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(()=>{
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user =>{
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async user =>{
       setCurrentUser(user);
+      createUserProfileDocument(user);
       console.log(currentUser)
     })
 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter,Routes,  Route } from 'react-router-dom';
+import {onSnapshot} from "firebase/firestore"
 
 import './App.css';
 
@@ -16,10 +17,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(()=>{
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async user =>{
-      setCurrentUser(user);
-      createUserProfileDocument(user);
-      console.log(currentUser)
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
+
+      if (userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+        onSnapshot(userRef, snaphot => {
+          setCurrentUser({
+            id: snaphot.id,
+            ...onSnapshot.data()
+          });
+        })
+      }
+      setCurrentUser(userAuth);
     })
 
     return () =>{

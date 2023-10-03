@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter,Routes,  Route } from 'react-router-dom';
 import {onSnapshot} from "firebase/firestore"
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {useDispatch} from "react-redux"
 
 import './App.css';
@@ -13,13 +14,14 @@ import { setCurrentUser } from './redux/user/user.reducer';
 
 
 import Header from './components/Header/header-component';
-import {auth, createUserProfileDocument} from './firebase/firebase.utils'
+import {createUserProfileDocument} from './firebase/firebase.utils'
 
 function App() {
+  const auth  = getAuth()
   const dispatch = useDispatch()
   useEffect(()=>{
    
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
+    const unsubscribeFromAuth = onAuthStateChanged(auth, async userAuth =>{
 
       if (userAuth){
         const userRef = await createUserProfileDocument(userAuth);
@@ -30,8 +32,8 @@ function App() {
           }));
         })
       }
-      setCurrentUser(userAuth);
-    })
+     dispatch(setCurrentUser(userAuth));
+    },[setCurrentUser])
 
     return () =>{
       unsubscribeFromAuth();

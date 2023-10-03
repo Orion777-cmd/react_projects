@@ -18,11 +18,14 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
 export const firestore = getFirestore(app);
-export { auth, provider, signInWithPopup };
+
 
 export const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result= await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const user = result.user;
+      console.log('user: ' ,user)
     } catch (error) {
       console.log('Error signing in with Google:', error);
     }
@@ -37,7 +40,7 @@ export const signInWithGoogle = async () => {
     console.log('snapshot', snapshot.exists())
     if (!snapshot.exists()) {
       const { displayName, email, photoURL } = userAuth;
-      const createdAt = new Date();
+      const createdAt = new Date().toISOString;
       console.log('name ', displayName, 'email ', email)
       try {
         await setDoc(userRef, {

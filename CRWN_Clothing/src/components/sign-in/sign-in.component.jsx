@@ -15,8 +15,8 @@ const SignIn = () => {
         e.preventDefault();
         try{
             const auth = getAuth()
-            const temp = await signInWithEmailAndPassword(auth, email, password)
-            console.log(temp)
+            await signInWithEmailAndPassword(auth, email, password)
+            
             setEmail('')
             setPassword('')
         }catch(err){

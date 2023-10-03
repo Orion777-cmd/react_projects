@@ -4,12 +4,13 @@ import {useDispatch} from "react-redux"
 
 import "./header.styles.scss"
 import logo from '../../assets/crown.svg'
-import {auth} from "../../firebase/firebase.utils"
+import {getAuth, signOut} from "firebase/auth"
 import { useSelector } from 'react-redux'
 
-const Header = ({currentUser}) => {
+const Header = () => {
     
-    const user = useSelector(state=> state.user.currentUser);
+    const currentUser = useSelector(state=> state.user.currentUser);
+    const auth = getAuth()
    return (
     <div className="header">
         <Link to="/" className="logo-container">
@@ -21,8 +22,8 @@ const Header = ({currentUser}) => {
             <Link to="/contact" className="option">Contact</Link>
             {/* <Link to="/signin" className="option">Sign In</Link> */}
             {
-                user?
-                <div className="option" onClick={()=>{auth.signOut()}}>SIGN OUT</div>:
+                currentUser?
+                <div className="option" onClick={()=>{signOut(auth)}}>SIGN OUT</div>:
                 <Link className="option" to='/signin'>SIGN IN</Link>
             }
         </div>

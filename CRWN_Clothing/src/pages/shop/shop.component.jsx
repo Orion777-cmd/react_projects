@@ -7,14 +7,14 @@ const ShopPage =  () =>{
    
     
     const [shopData, setShopData] = useState(SHOP_DATA);
-    console.log(shopData);
+    
     return(
         <div className='shop-page'>
             <h1>shop Collection</h1>
              {
                 
             shopData.map(({id, ...otherCollectionProps}) =>{
-                console.log('otherCollectionProps: ', otherCollectionProps);
+                
                return  <PreviewCollection key={id} {...otherCollectionProps} />
             } )
          }

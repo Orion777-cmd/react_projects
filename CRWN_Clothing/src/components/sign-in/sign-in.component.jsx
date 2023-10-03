@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth"
 import "./sign-in.styles.scss"
 
 import FormInput from "..//form-input/form-input.component";
@@ -11,8 +11,18 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try{
+            const auth = getAuth()
+            await signInWithEmailAndPassword(auth, email, password)
+            
+            setEmail('')
+            setPassword('')
+        }catch(err){
+            console.error(err.code, err.message)
+        }
+        
        
     }
 

@@ -21,10 +21,10 @@ function App() {
 
       if (userAuth){
         const userRef = await createUserProfileDocument(userAuth);
-        onSnapshot(userRef, snaphot => {
+        onSnapshot(userRef, snapshot => {
           setCurrentUser({
-            id: snaphot.id,
-            ...onSnapshot.data()
+            id: snapshot.id,
+            ...snapshot.data()
           });
         })
       }
@@ -34,7 +34,7 @@ function App() {
     return () =>{
       unsubscribeFromAuth();
     }
-  })
+  }, [])
   return (
     
     <BrowserRouter>

@@ -6,10 +6,13 @@ import "./header.styles.scss"
 import logo from '../../assets/crown.svg'
 import {getAuth, signOut} from "firebase/auth"
 import { useSelector } from 'react-redux'
+import CartIcon from "../cart-icon/cart-icon.component"
+import CartDropdown from "../cart-dropdown/cart-dropdown.component"
 
 const Header = () => {
     
     const currentUser = useSelector(state=> state.user.currentUser);
+    const hidden = useSelector(state => state.cart.hidden)
     const auth = getAuth()
    return (
     <div className="header">
@@ -26,7 +29,15 @@ const Header = () => {
                 <div className="option" onClick={()=>{signOut(auth)}}>SIGN OUT</div>:
                 <Link className="option" to='/signin'>SIGN IN</Link>
             }
+
+            <CartIcon />
         </div>
+        {
+            hidden?
+            <CartDropdown/>:
+            null
+        }
+       
     </div>
    )
 }

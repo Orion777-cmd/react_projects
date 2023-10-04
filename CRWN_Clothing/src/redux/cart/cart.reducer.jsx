@@ -14,10 +14,10 @@ const cartSlice = createSlice({
       state.hidden = !state.hidden;
     },
 
-    addItem: (state, action) =>{
-        console.log("payload", action.payload.text)
-        state.cartItems.push(addItemToCart(state.cartItems, action.payload.text))
-        
+    addItem: (state, action) => {
+      const newItem = action.payload;
+      const updatedCartItems = addItemToCart(state.cartItems, newItem);
+      state.cartItems = updatedCartItems;
     }
   },
 });

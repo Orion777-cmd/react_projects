@@ -11,6 +11,7 @@ import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up-page/sign-in-sign-up.component';
 
 import { setCurrentUser } from './redux/user/user.reducer';
+import { toggleCartHidden, addItem } from './redux/cart/cart.reducer';
 
 
 import Header from './components/Header/header-component';

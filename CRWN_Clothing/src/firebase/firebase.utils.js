@@ -32,28 +32,30 @@ export const signInWithGoogle = async () => {
   };
 
 
-  export const createUserProfileDocument = async (userAuth, additionalData) => {
+  export const createUserProfileDocument = async (userAuth, displayName) => {
     if (!userAuth) return;
   
     const userRef = doc(firestore, `users/${userAuth.uid}`);
     const snapshot = await getDoc(userRef);
-    console.log('snapshot', snapshot.exists())
+  
     if (!snapshot.exists()) {
-      const { displayName, email, photoURL } = userAuth;
-      const createdAt = new Date().toISOString;
-      console.log('name ', displayName, 'email ', email)
+      const { email, photoURL } = userAuth;
+
+      const createdAt = new Date().toISOString();
+  
       try {
         await setDoc(userRef, {
           displayName,
           email,
           photoURL,
           createdAt,
-          ...additionalData
+          
         });
       } catch (error) {
         console.log('Error creating user profile:', error.message);
       }
     }
+  
   
     return userRef;
   };

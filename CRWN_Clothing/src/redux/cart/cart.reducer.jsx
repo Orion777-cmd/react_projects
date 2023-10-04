@@ -15,9 +15,11 @@ const cartSlice = createSlice({
     },
 
     addItem: (state, action) => {
+    
       const newItem = action.payload;
       const updatedCartItems = addItemToCart(state.cartItems, newItem);
       state.cartItems = updatedCartItems;
+     
     }
   },
 });

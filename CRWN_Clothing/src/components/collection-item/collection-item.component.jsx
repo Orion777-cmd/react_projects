@@ -7,6 +7,7 @@ import { addItem } from "../../redux/cart/cart.reducer"
 
 const CollectionItem = ({item}) =>{
     const {id, name, price, imageUrl} = item;
+   
     const dispatch = useDispatch();
     return (
         <div className="collection-item">
@@ -22,7 +23,7 @@ const CollectionItem = ({item}) =>{
                 <span className="price">${price}</span>
             </div>
             
-            <CustomButton onClick={(item)=> dispatch(addItem(item))}>Add To Cart</CustomButton>
+            <CustomButton onClick={( )=> dispatch(addItem(item))}>Add To Cart</CustomButton>
         </div>
     )
 }

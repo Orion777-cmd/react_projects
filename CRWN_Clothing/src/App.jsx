@@ -9,6 +9,7 @@ import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up-page/sign-in-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 import { setCurrentUser } from './redux/user/user.reducer';
 import { toggleCartHidden, addItem } from './redux/cart/cart.reducer';
@@ -17,9 +18,11 @@ import { toggleCartHidden, addItem } from './redux/cart/cart.reducer';
 import Header from './components/Header/header-component';
 import {createUserProfileDocument} from './firebase/firebase.utils'
 
+import { selectCurrentUser } from './redux/user/user.selector';
+
 function App() {
   const auth  = getAuth()
-  const currentUser = useSelector(state => state.user.currentUser)
+  const currentUser = useSelector(selectCurrentUser)
   const dispatch = useDispatch()
   useEffect(()=>{
    
@@ -35,7 +38,7 @@ function App() {
         })
       }
      dispatch(setCurrentUser(userAuth));
-    },[setCurrentUser])
+    },)
 
     return () =>{
       unsubscribeFromAuth();
@@ -49,6 +52,7 @@ function App() {
         
         <Route exact path='/' element={<HomePage/>} />
         <Route path='/shop' element={<ShopPage />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
         <Route
   exact
   path="/signin"

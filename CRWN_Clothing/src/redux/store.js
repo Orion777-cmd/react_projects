@@ -10,7 +10,9 @@ const store = configureStore({
         user: userReducer,
         cart: cartReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false,
+    }).concat(logger)
 })
 
 export default store;

@@ -8,8 +8,6 @@ import './directory.styles.scss';
 
 const  Directory = () => { 
  
-
-  
     const sections = useSelector(selectDirectorySection);
    
     return (

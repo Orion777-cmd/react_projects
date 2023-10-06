@@ -7,7 +7,7 @@ import thunk from "redux-thunk"
 import userReducer from "./user/user.reducer"
 import cartReducer from "./cart/cart.reducer"
 import directoryReducer from "./directory/directory.reducer";
-import shopReduer from "./shop/shop.reduer";
+import shopReducer from "./shop/shop.reducer";
 
 const persistConfig = {
     key: 'root',
@@ -17,13 +17,13 @@ const persistConfig = {
 
 const persistedCartReducer = persistReducer(persistConfig, cartReducer)
 const persistedDirectoryReducer = persistReducer(persistConfig, directoryReducer)
-const persistedShopReducer = persistReducer(persistConfig, shopReduer)
+// const persistedShopReducer = persistReducer(persistConfig, shopReducer)
 export const store = configureStore({
     reducer: {
         user: userReducer,
         cart: persistedCartReducer,
         directory: persistedDirectoryReducer,
-        shop: persistedShopReducer
+        shop: shopReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,

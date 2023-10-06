@@ -51,14 +51,14 @@ function App() {
       <Routes>
         
         <Route exact path='/' element={<HomePage/>} />
-        <Route path='/shop' element={<ShopPage />} />
+        <Route path='/shop/*' element={<ShopPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />
         <Route
-  exact
-  path="/signin"
-  element={
-    currentUser ? <Navigate to="/" /> : <SignInSignUpPage />}
-    />
+          exact
+          path="/signin"
+          element={
+            currentUser ? <Navigate to="/" /> : <SignInSignUpPage />}
+        />
 
       </Routes>`
     </BrowserRouter>

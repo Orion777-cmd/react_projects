@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-import SHOP_DATA from './shopData.js';
+import shopDatas from './shopData.js';
 
 const initialState = {
-    shopData : SHOP_DATA
+    shopData : shopDatas
 }
 
 const shopSlice = createSlice({

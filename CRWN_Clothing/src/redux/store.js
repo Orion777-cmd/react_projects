@@ -17,17 +17,17 @@ const persistConfig = {
 
 const persistedCartReducer = persistReducer(persistConfig, cartReducer)
 const persistedDirectoryReducer = persistReducer(persistConfig, directoryReducer)
-// const persistedShopReducer = persistReducer(persistConfig, shopReducer)
+const persistedShopReducer = persistReducer(persistConfig, shopReducer)
 export const store = configureStore({
     reducer: {
         user: userReducer,
         cart: persistedCartReducer,
         directory: persistedDirectoryReducer,
-        shop: shopReducer
+        shop: persistedShopReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(logger)
+    }).concat(logger).concat(thunk)
 })
 
 export const persistor = persistStore(store)

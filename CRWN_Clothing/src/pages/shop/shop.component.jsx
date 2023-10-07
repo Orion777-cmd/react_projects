@@ -4,28 +4,28 @@ import "./shop.styles.scss";
 import CollectionOverview from '../../components/collection-overview/collection-overview.component';
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import {Route, Routes} from "react-router-dom"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import CollectionPage from '../collection/collection.component';
 
 import {onSnapshot, doc, getDocs, collection} from "firebase/firestore"
 import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
-import { updateCollections } from '../../redux/shop/shop.reducer';
-
+import { fetchShopData } from '../../redux/shop/shop.reducer';
+import { createStructuredSelector } from 'reselect';
+import { selectShopData, selectIsLoading, selectError , selectIsCollectionsLoaded} from '../../redux/shop/shop.selector';
 
 const ShopPage =  () =>{
     
-    const [isLoading, setIsLoading] = useState(true);
-
-
+    const {isCollectionLoaded, isLoading, error} = useSelector(
+        createStructuredSelector({
+            isCollectionLoaded : selectIsCollectionsLoaded,
+            isLoading: selectIsLoading,
+            error: selectError
+        })
+    )
     const dispatch = useDispatch();
     useEffect(() => {
-        const collectionRef = collection(firestore, "collections");
-
-        getDocs(collectionRef).then(snapshot => {
-            const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
-            dispatch(updateCollections(collectionSnapshot));
-            setIsLoading(false);
-        });
+        dispatch(fetchShopData())
         // const unsubscribeFromAuth = onSnapshot(collectionRef, async snapshot => {
         //     const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
         // //    console.log(collectionSnapshot)
@@ -35,7 +35,7 @@ const ShopPage =  () =>{
         
     
         // return () => {
-            
+             
         //     unsubscribeFromAuth();
         // };
     }, []);
@@ -46,7 +46,7 @@ const ShopPage =  () =>{
         <div className='shop-page'>
             <Routes>
                 <Route index element={<CollectionsOverviewWithSpinner isLoading={isLoading} />}/>
-                <Route path=':collectionUrlParam' element={<CollectionPageWithSpinner isLoading={isLoading}/>}/>
+                <Route path=':collectionUrlParam' element={<CollectionPageWithSpinner isLoading={!isCollectionLoaded}/>}/>
             </Routes>
            
         </div>

@@ -7,13 +7,28 @@ export const selectShopData = createSelector(
   shop => shop.shopData
 );
 
+export const selectIsLoading = createSelector(
+  [selectShop],
+  shop => shop.isLoading
+);
+
+export const selectError = createSelector(
+  [selectShop],
+  shop => shop.error
+);
+
 export const selectShopDataForPreview = createSelector(
     [selectShopData],
-    shopData => Object.keys(shopData).map(key => shopData[key])
+    shopData => (shopData) ? Object.keys(shopData).map(key => shopData[key]) : []
   );
 
   export const selectCollection = createSelector(
     [selectShopData],
     shopData => (collectionUrlParam) => shopData && shopData[collectionUrlParam]
   );
+
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.shopData
+)
   

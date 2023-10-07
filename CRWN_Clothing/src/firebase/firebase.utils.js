@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc , collection, writeBatch} from 'firebase/firestore';
+
 
 const config = {
   apiKey: "AIzaSyAQu5KMYuSA7DmmZ4z1gnA8DurYppk0Zig",
@@ -59,3 +60,35 @@ export const signInWithGoogle = async () => {
   
     return userRef;
   };
+
+  export const addShopDataAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = collection(firestore, collectionKey);
+    
+    console.log("collection ref: ", collectionRef)
+    // const batch = writeBatch();
+    objectsToAdd.forEach(async obj => {
+      const newDocRef = doc(collectionRef);
+      // console.log(newDocRef)
+      await setDoc(newDocRef, obj);
+    })
+
+    // return await batch.commit();
+  }
+
+  export const convertCollectionsSnapshotToMap = (collections) => {
+    const transformedCollection = collections.docs.map(doc => {
+      const { title, items } = doc.data();
+  
+      return {
+        id: doc.id,
+        routeName: encodeURI(title.toLowerCase()),
+        title,
+        items
+      };
+    });
+  
+    return transformedCollection.reduce((accumulator, collection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+    }, {});
+  }

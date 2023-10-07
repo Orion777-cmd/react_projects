@@ -3,6 +3,7 @@ import { BrowserRouter,Routes,  Route,Navigate  } from 'react-router-dom';
 import {onSnapshot} from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {useDispatch, useSelector} from "react-redux"
+import { createStructuredSelector } from 'reselect';
 
 import './App.css';
 
@@ -16,13 +17,19 @@ import { toggleCartHidden, addItem } from './redux/cart/cart.reducer';
 
 
 import Header from './components/Header/header-component';
-import {createUserProfileDocument} from './firebase/firebase.utils'
+import {createUserProfileDocument, addShopDataAndDocuments} from './firebase/firebase.utils'
 
 import { selectCurrentUser } from './redux/user/user.selector';
+import {selectShopDataForPreview} from "./redux/shop/shop.selector"
+
 
 function App() {
   const auth  = getAuth()
-  const currentUser = useSelector(selectCurrentUser)
+  const {currentUser, shopData} = useSelector(createStructuredSelector({
+    
+    currentUser: selectCurrentUser,
+    shopData: selectShopDataForPreview
+  }))
   const dispatch = useDispatch()
   useEffect(()=>{
    
@@ -39,6 +46,10 @@ function App() {
       }
      dispatch(setCurrentUser(userAuth));
     },)
+
+    // added the data one time time to the firestore 
+
+    // addShopDataAndDocuments("colle ctions", shopData.map(({title, items})=>({title, items})) )
 
     return () =>{
       unsubscribeFromAuth();

@@ -7,7 +7,7 @@ import {Route, Routes} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import CollectionPage from '../collection/collection.component';
 
-import {onSnapshot, doc, collection} from "firebase/firestore"
+import {onSnapshot, doc, getDocs, collection} from "firebase/firestore"
 import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
 import { updateCollections } from '../../redux/shop/shop.reducer';
 
@@ -20,18 +20,24 @@ const ShopPage =  () =>{
     const dispatch = useDispatch();
     useEffect(() => {
         const collectionRef = collection(firestore, "collections");
-        const unsubscribeFromAuth = onSnapshot(collectionRef, async snapshot => {
+
+        getDocs(collectionRef).then(snapshot => {
             const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
-        //    console.log(collectionSnapshot)
-            dispatch(updateCollections(collectionSnapshot))
+            dispatch(updateCollections(collectionSnapshot));
             setIsLoading(false);
         });
+        // const unsubscribeFromAuth = onSnapshot(collectionRef, async snapshot => {
+        //     const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
+        // //    console.log(collectionSnapshot)
+        //     dispatch(updateCollections(collectionSnapshot))
+        //     setIsLoading(false);
+        // });
         
     
-        return () => {
+        // return () => {
             
-            unsubscribeFromAuth();
-        };
+        //     unsubscribeFromAuth();
+        // };
     }, []);
 
     const CollectionsOverviewWithSpinner = WithSpinner(CollectionOverview)

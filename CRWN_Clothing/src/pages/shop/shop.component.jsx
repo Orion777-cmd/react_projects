@@ -10,7 +10,7 @@ import CollectionPage from '../collection/collection.component';
 
 import {onSnapshot, doc, getDocs, collection} from "firebase/firestore"
 import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
-import { fetchShopData } from '../../redux/shop/shop.reducer';
+import { getShopDataStartAction } from '../../redux/shop/shop.reducer';
 import { createStructuredSelector } from 'reselect';
 import { selectShopData, selectIsLoading, selectError , selectIsCollectionsLoaded} from '../../redux/shop/shop.selector';
 
@@ -25,7 +25,7 @@ const ShopPage =  () =>{
     )
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchShopData())
+        dispatch(getShopDataStartAction())
         // const unsubscribeFromAuth = onSnapshot(collectionRef, async snapshot => {
         //     const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
         // //    console.log(collectionSnapshot)

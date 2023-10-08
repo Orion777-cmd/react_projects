@@ -17,36 +17,31 @@ const userSlice = createSlice({
     googleSignInStartAction: (state) => {
       state.isLoading = true;
     },
-    googleSignInSuccessAction: (state, action) => {
+    signInSuccessAction: (state, action) => {
       state.isLoading = false;
       state.currentUser = action.payload;
     },
-    googleSignInFailureAction: (state, action) => {
+    signInFailureAction: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload.error.message;
+      state.error = action.payload.error;
     },
     emailSignInStartAction: (state) => {
       state.isLoading = true;
     },
-    emailSignInSuccessAction: (state, action) => {
-      state.isLoading = false;
-      state.currentUser = action.payload;
-    },
-    emailSignInFailureAction: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload.error;
-    },
+    
+    checkUserSessionAction: (state) => {
+      state.isLoading = true;
+    }
   },
 });
 
 export const {
   setCurrentUser,
-  googleSignInFailureAction,
   googleSignInStartAction,
-  googleSignInSuccessAction,
-  emailSignInFailureAction,
+  signInFailureAction,
+  signInSuccessAction,
   emailSignInStartAction,
-  emailSignInSuccessAction,
+  checkUserSessionAction,
 } = userSlice.actions;
 
 export default userSlice.reducer;

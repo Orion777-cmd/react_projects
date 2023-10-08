@@ -21,6 +21,7 @@ import {createUserProfileDocument, addShopDataAndDocuments} from './firebase/fir
 
 import { selectCurrentUser } from './redux/user/user.selector';
 import {selectShopDataForPreview} from "./redux/shop/shop.selector"
+import { checkUserSessionAction } from './redux/user/user.reducer';
 
 
 function App() {
@@ -31,30 +32,10 @@ function App() {
     shopData: selectShopDataForPreview
   }))
   const dispatch = useDispatch()
-  useEffect(()=>{
-   
-    const unsubscribeFromAuth = onAuthStateChanged(auth, async userAuth =>{
+  useEffect(() => {
+    dispatch(checkUserSessionAction())
+  },[])
 
-      if (userAuth){
-        const userRef = await createUserProfileDocument(userAuth);
-        onSnapshot(userRef, snapshot => {
-          dispatch(setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
-          }));
-        })
-      }
-     dispatch(setCurrentUser(userAuth));
-    },)
-
-    // added the data one time time to the firestore 
-
-    // addShopDataAndDocuments("colle ctions", shopData.map(({title, items})=>({title, items})) )
-
-    return () =>{
-      unsubscribeFromAuth();
-    }
-  },[setCurrentUser])
   return (
     
     <BrowserRouter>

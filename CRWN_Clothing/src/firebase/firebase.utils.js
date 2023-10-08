@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc , collection} from 'firebase/firestore';
 
 
@@ -60,6 +60,15 @@ export const signInWithGoogle = async () => {
   
     return userRef;
   };
+
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(auth, userAuth => {
+        unsubscribe();
+        resolve(userAuth);
+      }, reject);
+    });
+  }
 
   export const addShopDataAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = collection(firestore, collectionKey);

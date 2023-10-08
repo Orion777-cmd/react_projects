@@ -7,9 +7,12 @@ import { signInFailureAction,
     emailSignInStartAction,
     
     checkUserSessionAction,
+    signOutFailureAction,
+    signOutStartAction,
+    signOutSuccessAction
     } from './user.reducer';
 
-import {  getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
+import {  getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import {getDoc} from "firebase/firestore"
 import {getCurrentUser, createUserProfileDocument} from "../../firebase/firebase.utils"
 
@@ -76,3 +79,19 @@ export function* onCheckUserSession(){
 }
 
 
+export function* signOutUser(){
+    try{
+        const auth = yield getAuth()
+        const user = yield signOut(auth)
+        yield put(signOutSuccessAction(user))
+    }catch(error){
+        yield put(signOutFailureAction(error))
+    }
+    
+}
+export function* onSignOut(){
+    yield takeLatest(
+        signOutStartAction,
+        signOutUser,
+    )
+}

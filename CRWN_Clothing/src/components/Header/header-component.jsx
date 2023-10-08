@@ -11,6 +11,7 @@ import CartIcon from "../cart-icon/cart-icon.component"
 import CartDropdown from "../cart-dropdown/cart-dropdown.component"
 import { selectCartHidden,  } from "../../redux/cart/cart.selectors"
 import { selectCurrentUser } from "../../redux/user/user.selector"
+import { signOutStartAction } from "../../redux/user/user.reducer"
 
 const Header = () => {
 
@@ -21,7 +22,7 @@ const Header = () => {
         })
     )
     
-    const auth = getAuth()
+    const dispatch = useDispatch()
    return (
     <div className="header">
         <Link to="/" className="logo-container">
@@ -34,7 +35,7 @@ const Header = () => {
             {/* <Link to="/signin" className="option">Sign In</Link> */}
             {
                 currentUser?
-                <div className="option" onClick={()=>{signOut(auth)}}>SIGN OUT</div>:
+                <div className="option" onClick={()=>dispatch(signOutStartAction())}>SIGN OUT</div>:
                 <Link className="option" to='/signin'>SIGN IN</Link>
             }
 

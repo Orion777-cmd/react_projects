@@ -9,10 +9,13 @@ import { signInFailureAction,
     checkUserSessionAction,
     signOutFailureAction,
     signOutStartAction,
-    signOutSuccessAction
+    signOutSuccessAction,
+    signUpStartAction,
+    signUpSuccessAction,
+    signUpFailureAction
     } from './user.reducer';
 
-import {  getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {  getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut,createUserWithEmailAndPassword } from 'firebase/auth';
 import {getDoc} from "firebase/firestore"
 import {getCurrentUser, createUserProfileDocument} from "../../firebase/firebase.utils"
 
@@ -93,5 +96,43 @@ export function* onSignOut(){
     yield takeLatest(
         signOutStartAction,
         signOutUser,
+    )
+}
+
+export function* signUpUser({ payload: { email, password, displayName } }) {
+    try {
+      const auth = yield getAuth();
+      const { user } = yield createUserWithEmailAndPassword(auth, email, password);
+      yield put(signUpSuccessAction({ user, additionalData: {displayName}}));
+    } catch (error) {
+      yield put(signUpFailureAction(error));
+    }
+  }
+
+
+
+export function* onSignUp(){
+    yield takeLatest(
+        signUpStartAction,
+        signUpUser
+    )
+}
+
+
+export function* signInAfterSignUp({ payload: { user, additionalData } }){
+    try{
+        const userRef = yield call(createUserProfileDocument, user, additionalData.displayName)
+        const userSnapshot = yield getDoc(userRef)
+        yield put(signInSuccessAction({id: userSnapshot.id, ...userSnapshot.data()}))
+    }catch(error){
+        yield put(signInFailureAction(error))
+    }   
+    
+}
+
+export function* onSignUpSuccessAction(){
+    yield takeLatest(
+        signUpSuccessAction,
+        signInAfterSignUp
     )
 }

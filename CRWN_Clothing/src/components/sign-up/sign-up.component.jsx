@@ -6,7 +6,12 @@ import CustomButton from "../custom-button/custom-button.component"
 
 import { createUserProfileDocument} from "../../firebase/firebase.utils"
 import { getAuth, createUserWithEmailAndPassword ,  onAuthStateChanged} from "firebase/auth";
+import {signUpStartAction} from "../../redux/user/user.reducer"
+import {useDispatch} from "react-redux"
 const SignUp = () => {
+
+    const dispatch = useDispatch()
+
     const [inputValue, setInputValue] = useState({
         displayName : "",
         email: "",
@@ -24,29 +29,9 @@ const SignUp = () => {
             return ;
         }
 
-        try{
-            const auth = getAuth();
-            const {user}= await createUserWithEmailAndPassword(auth, email, password);
-            // console.log("user, ", user)
+        dispatch(signUpStartAction({ email, password, displayName }));
 
-            onAuthStateChanged(auth, async (userAuth)=>{
-                if(userAuth){
-                    console.log("###", userAuth, displayName)
-                    await createUserProfileDocument(user, displayName)
-
-                }
-            })
-
-            setInputValue({
-                displayName : "",
-                email: "",
-                password: "", 
-                confirmPassword: ""
-            })
-            
-        }catch(err){
-            console.error(err.code, err.message)
-        }
+      
     }
 
     const handleChange = (event) =>{

@@ -5,8 +5,7 @@ import {firestore} from "../../firebase/firebase.utils"
 import { convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
 export function* fetchShopDataAsync(){
-    yield console.log('I am fired')
-
+  
     try{
         const collectionRef = collection(firestore, 'collections');
         const snapshot = yield getDocs(collectionRef);

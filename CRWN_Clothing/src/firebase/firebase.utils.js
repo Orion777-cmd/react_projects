@@ -98,6 +98,9 @@ export const signInWithGoogle = async () => {
   
     return transformedCollection.reduce((accumulator, collection) => {
       accumulator[collection.title.toLowerCase()] = collection;
+      console.log("accumulator: ", accumulator)
       return accumulator;
     }, {});
+
+    
   }

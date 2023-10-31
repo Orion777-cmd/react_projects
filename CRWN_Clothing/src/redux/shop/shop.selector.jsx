@@ -24,7 +24,10 @@ export const selectShopDataForPreview = createSelector(
 
   export const selectCollection = createSelector(
     [selectShopData],
-    shopData => (collectionUrlParam) => shopData && shopData[collectionUrlParam]
+    
+    (shopData) => (collectionUrlParam) =>
+    
+      shopData ? shopData[collectionUrlParam] : null
   );
 
 export const selectIsCollectionsLoaded = createSelector(

@@ -11,14 +11,14 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 
 const CollectionPage = ()  =>{
     const {collectionUrlParam} = useParams()
-    
+    console.log("collectionUrlParam", collectionUrlParam)
 
-    const collection = useSelector((state) => 
+    const {title, items} = useSelector((state) => 
         selectCollection(state)(collectionUrlParam)
     );
 
     
-    const {title, items} = collection
+    
     return (
         <div className="collection-page">
             <h2 className="title">{title}</h2>

@@ -11,6 +11,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up-page/sign-in-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
+import ContactUs from './pages/contact/contact.component';
 
 import { setCurrentUser } from './redux/user/user.reducer';
 import { toggleCartHidden, addItem } from './redux/cart/cart.reducer';
@@ -45,6 +46,7 @@ function App() {
         <Route exact path='/' element={<HomePage/>} />
         <Route path='/shop/*' element={<ShopPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />
+        <Route path='/contact' element={<ContactUs/>} />
         <Route
           exact
           path="/signin"

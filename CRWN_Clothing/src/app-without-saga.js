@@ -49,7 +49,7 @@ function App() {
 
     // added the data one time time to the firestore 
 
-    // addShopDataAndDocuments("colle ctions", shopData.map(({title, items})=>({title, items})) )
+    // addShopDataAndDocuments("collections", shopData.map(({title, items})=>({title, items})) )
 
     return () =>{
       unsubscribeFromAuth();

@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileImage from "../../assets/profile.jpg";
 
 const Explore = () => {
     return (
@@ -43,8 +44,8 @@ const Explore = () => {
 
             <div className="commits-container bg-blue-100 rounded-md rounded-b-none border border-blue-200 border-b-0 flex items-center justify-between px-4 py-4 mt-5">
               <div className="flex items-center space-x-2">
-                <a href="#"><img src="https://avatars2.githubusercontent.com/u/4323180?s=60&u=4962a4441fae9fba5f0f86456c6c506a21ffca4f&v=4" alt="avatar" className="w-6 h-6 rounded-full" /></a>
-                <a href="#" className="font-semibold hover:underline">adamwathan</a>
+                <a href="#"><img src={ProfileImage} alt="avatar" className="w-6 h-6 rounded-full" /></a>
+                <a href="#" className="font-semibold hover:underline">orion777-cmd</a>
                 <a href="#" className="hover:underline hover:text-blue-600">1.5.1</a>
               </div>
               <div className="flex items-end">

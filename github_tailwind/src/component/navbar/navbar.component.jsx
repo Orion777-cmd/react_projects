@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileImage from "../../assets/profile.jpg";
 
 const Navbar = () => {
     return (
@@ -30,7 +31,7 @@ const Navbar = () => {
               <svg className="w-3 ml-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7"></path></svg>
             </a>
             <a href="#" className="flex items-center hover:text-gray-400">
-              <img src="https://avatars0.githubusercontent.com/u/4316355?s=60&v=4" className="w-5 h-5 rounded-full" alt="avatar" />
+              <img src={ProfileImage} className="w-5 h-5 rounded-full" alt="avatar" />
               <svg className="w-3 ml-1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7"></path></svg>
             </a>
           </div>

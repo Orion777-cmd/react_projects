@@ -1,5 +1,6 @@
 import React from "react";
-import Banners from "./components/banners/banners.component";
+import BannersPage from "./pages/bannersPage/bannersPage.component";
+import TestimonialsPage from "./pages/testimonialsPage/testimonialsPage.component";
 import "./App.css";
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <div className="app-container">
-      
+      <TestimonialsPage />
 
     </div>
   )

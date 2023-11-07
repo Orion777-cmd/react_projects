@@ -9,18 +9,107 @@
 .wrapper{
     display: flex;
     height: 400px;
+    width: 80%;
     justify-content: center;
     align-items: center;
     gap: 32px;
     align-self: stretch;
+    background-color: #2545B8;
 }
 
-.image{
+.image-container{
+    margin-left: 48px;
     width: 384px;
     height: 464px;
     border-radius: 12px;
     background: url("../../assets/Image.png"), lightgray 0px -56px / 100% 124.138% no-repeat;
+    background-position: center;
+    background-size: cover;
+
 
     /* /shadow/xl */
     box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.04), 0px 20px 25px -5px rgba(0, 0, 0, 0.10);
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    align-self: stretch;
+}
+.details-container > svg{
+    width: 48px;
+    height: 48px;
+}
+
+.detail{
+    color: #FFF;
+
+    /* text-2xl/leading-8/font-medium */
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 133.333% */
+}
+
+.name{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+}
+
+.position{
+    color: #FFF;
+
+    /* text-base/leading-6/font-medium */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+}
+
+@media (max-width: 1000px) {
+    .testimonials-container{
+        margin-inline: auto;
+        width: 476px;
+        display: flex;
+        padding-bottom: 0px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        align-self: stretch;
+        height: 800px;
+    }
+    .wrapper {
+        flex-direction: column;
+        gap : 16px;
+    }
+    .image-container {
+        width: 344px;
+        height: 206px;
+        flex-shrink: 0;
+        margin-left: -10px;
+    }
+    .details-container{
+        display: flex;
+        padding: 0px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+        
+    }
+    .name, .position{
+        font-size: 8px;
+        line-height: 8px;
+    }
 }

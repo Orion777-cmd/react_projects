@@ -5,7 +5,7 @@ import Testimonials from "../../components/testimonials/testimonials.component";
 const TestimonialsPage = () => {
     return (
         <>
-        
+            <Testimonials />
         </>
     )
 }

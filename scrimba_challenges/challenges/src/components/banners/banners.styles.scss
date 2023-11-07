@@ -1,0 +1,42 @@
+.banners-container{
+    display: flex;
+    width: 896px;
+    padding: 16px;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 16px;
+    border-radius: 6px;
+     
+}
+.banners-row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+}
+.success {
+    background: #ECFDF5;
+    color: #34D399;
+}
+
+.error {
+    background: #FEF2F2;
+    color: #F87171;
+}
+.warning{
+    background: #FEFCEA;
+    color: #FBBF24;
+}
+.neutral{
+    background: #F0F4FF;
+    color: #60A5FA;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+

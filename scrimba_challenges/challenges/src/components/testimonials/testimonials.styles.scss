@@ -1,0 +1,26 @@
+.testimonials-container{
+    display: flex;
+    width: 1358px;
+    padding: 96px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper{
+    display: flex;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.image{
+    width: 384px;
+    height: 464px;
+    border-radius: 12px;
+    background: url("../../assets/Image.png"), lightgray 0px -56px / 100% 124.138% no-repeat;
+
+    /* /shadow/xl */
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.04), 0px 20px 25px -5px rgba(0, 0, 0, 0.10);
+}

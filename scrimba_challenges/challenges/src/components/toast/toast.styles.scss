@@ -1,0 +1,56 @@
+.toast-container {
+    display: flex;
+    width: 384px;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+}
+
+.content-container{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 0 0;
+}
+
+.label-text{
+    color: #065F46;
+
+    /* text-sm/leading-5/font-medium */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+}
+
+.message-detail{
+    color: #047857;
+
+    /* text-sm/leading-5/font-normal */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+
+.success {
+    background: #ECFDF5;
+    color: #34D399;
+}
+
+.error {
+    background: #FEF2F2;
+    color: #F87171;
+}
+.warning{
+    background: #FEFCEA;
+    color: #FBBF24;
+}
+.neutral{
+    background: #F0F4FF;
+    color: #60A5FA;
+}

@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CollectionPage from '../collection/collection.component';
 
-import {onSnapshot, doc, getDocs, collection} from "firebase/firestore"
-import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
 import { getShopDataStartAction } from '../../redux/shop/shop.reducer';
 import { createStructuredSelector } from 'reselect';
 import { selectShopData, selectIsLoading, selectError , selectIsCollectionsLoaded} from '../../redux/shop/shop.selector';
@@ -33,7 +31,7 @@ const ShopPage =  () =>{
     return(
         <div className='shop-page'>
             <Routes>
-                <Route index element={<CollectionsOverviewWithSpinner isLoading={isLoading} />}/>
+                <Route index element={<CollectionsOverviewWithSpinner isLoading={!isLoading} />}/>
                 <Route path=':collectionUrlParam' element={<CollectionPageWithSpinner isLoading={!isCollectionLoaded}/>}/>
             </Routes>
            

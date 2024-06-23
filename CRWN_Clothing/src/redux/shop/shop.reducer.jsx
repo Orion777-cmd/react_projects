@@ -32,7 +32,7 @@ export const shopSlice = createSlice({
         },
 
         getShopDataFailureAction: (state, action) => {
-            state.isLaoding = false, 
+            state.isLoading = false, 
             state.error = action.payload.error.message
         }
 

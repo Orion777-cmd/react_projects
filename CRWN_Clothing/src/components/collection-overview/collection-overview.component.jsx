@@ -15,6 +15,7 @@ const CollectionOverview = ()=>{
             collections : selectShopDataForPreview
         })
     )
+    
     return (
         <div className="collections-overview">
             {

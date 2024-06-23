@@ -23,6 +23,7 @@ import {createUserProfileDocument, addShopDataAndDocuments} from './firebase/fir
 import { selectCurrentUser } from './redux/user/user.selector';
 import {selectShopDataForPreview} from "./redux/shop/shop.selector"
 import { checkUserSessionAction } from './redux/user/user.reducer';
+import { getShopDataStartAction } from './redux/shop/shop.reducer';
 
 
 function App() {
@@ -35,8 +36,11 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(checkUserSessionAction())
-  },[])
 
+  },[])
+  if(currentUser){
+    dispatch(getShopDataStartAction())
+  }
   return (
     
     <BrowserRouter>

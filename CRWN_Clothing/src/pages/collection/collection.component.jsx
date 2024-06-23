@@ -15,9 +15,7 @@ const CollectionPage = ()  =>{
 
     const {title, items} = useSelector((state) => 
         selectCollection(state)(collectionUrlParam)
-    );
-
-    
+    );    
     
     return (
         <div className="collection-page">

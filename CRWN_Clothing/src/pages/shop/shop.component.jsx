@@ -26,18 +26,6 @@ const ShopPage =  () =>{
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getShopDataStartAction())
-        // const unsubscribeFromAuth = onSnapshot(collectionRef, async snapshot => {
-        //     const collectionSnapshot = convertCollectionsSnapshotToMap(snapshot);
-        // //    console.log(collectionSnapshot)
-        //     dispatch(updateCollections(collectionSnapshot))
-        //     setIsLoading(false);
-        // });
-        
-    
-        // return () => {
-             
-        //     unsubscribeFromAuth();
-        // };
     }, []);
 
     const CollectionsOverviewWithSpinner = WithSpinner(CollectionOverview)

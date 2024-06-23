@@ -9,11 +9,12 @@ import './directory.styles.scss';
 const  Directory = () => { 
  
     const sections = useSelector(selectDirectorySection);
-   
+    console.log("############", sections)
+    
     return (
       <div className='directory-menu'>
-        {sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {sections.map((section) => (
+          <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} size={section.size} />
         ))}
       </div>
     );
